@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from app.db.crud import get_predictions, get_volumes
+from app.db.crud import get_predictions_db, get_volumes
 from sqlalchemy.orm import Session
 
 
@@ -10,7 +10,7 @@ def _load_actuals(db: Session, tank_id: int) -> pd.Series:
     return actuals_df.total_volume
 
 def _load_preds(db: Session, tank_id: int) -> pd.Series:
-    preds = get_predictions(db, tank_id)
+    preds = get_predictions_db(db, tank_id)
     preds_df = pd.DataFrame.from_records(preds)
     return preds_df.predicted_volume
 

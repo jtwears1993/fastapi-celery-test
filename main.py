@@ -20,5 +20,10 @@ app = create_app()
 celery = app.celery_app
 
 
+@app.get("/")
+async def root():
+    return {"message": "Hello Bigger Applications!"}
+
+
 if __name__ == "__main__":
     uvicorn.run("main:app", port=9000, reload=True)
